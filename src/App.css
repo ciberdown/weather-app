@@ -4,3 +4,9 @@
   justify-content: center;
   box-sizing: border-box;
 }
+
+
+#textInput::placeholder {
+  color: white;
+  border: 0;
+}
