@@ -1,7 +1,9 @@
 import { QueryClient, QueryClientProvider } from "react-query";
-import "./App.css";
+import "./styles/App.css";
 import Main from "./components/main";
 import { ReactQueryDevtools } from "react-query/devtools";
+import "@fontsource/raleway";
+
 
 const queryClient = new QueryClient();
 function App() {

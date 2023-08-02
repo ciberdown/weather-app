@@ -13,6 +13,7 @@ export default function TextInput({ setCity, isLoading }) {
         id="textInput"
         onKeyDown={handleKeyDown}
         style={{
+          fontFamily:'Raleway',
           backgroundColor: "rgba(255, 255, 255, 0.2)",
           backdropFilter: "blur(20px)",
           borderRadius: "10px",

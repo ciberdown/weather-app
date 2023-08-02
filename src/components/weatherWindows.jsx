@@ -1,6 +1,11 @@
+import { Typography } from "@mui/material";
+import { createSelector } from "reselect";
 import React from "react";
+import { useSelector } from "react-redux";
 
 function WeatherWindows() {
+  // Usage in a component
+
   return (
     <div
       style={{
@@ -11,9 +16,12 @@ function WeatherWindows() {
         borderRadius: "20px",
         backgroundColor: "rgba(255, 255, 255, 0.2)",
         backdropFilter: "blur(20px)",
-        minWidth:'400px'
+        minWidth: "400px",
+        margin: "5px",
       }}
-    ></div>
+    >
+      {<Typography>{}</Typography>}
+    </div>
   );
 }
 

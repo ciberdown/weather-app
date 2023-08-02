@@ -1,22 +1,25 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import WeatherWindows from "./weatherWindows";
 import { Box } from "@mui/material";
 import cloudyBackground from "../assets/cloudy_background.jpg";
 import TextInput from "./textInput";
 import { useQuery } from "react-query";
-import { fetchWeather } from "./fetch/fetchWeatherApi";
 import { getWeatherUrlByCity } from "./fetch/getWeatherUrl";
+import { useDispatch, useSelector } from "react-redux";
+
+import { fetchWeather } from "./fetch/fetchWeatherAPIs";
 
 function Main() {
   const [city, setCity] = useState("");
-  const { data, isLoading, isError, error, status } = useQuery(
-    city,
-    () => fetchWeather(getWeatherUrlByCity(city)),
-    { enabled: city !== "" }
+  const { isError, error, isLoading, data } = useSelector(
+    (state) => state.weatherInfo
   );
-  console.log(city);
-  console.log(data);
-  console.log(status);
+
+  const dispatch = useDispatch();
+  useQuery(city, () => fetchWeather(getWeatherUrlByCity(city), dispatch), {
+    enabled: city !== "",
+  });
+
   return (
     <Box
       sx={{
@@ -27,7 +30,6 @@ function Main() {
         backgroundSize: "cover",
         backgroundPosition: "center",
         height: "100vh",
-        
       }}
     >
       <TextInput setCity={setCity} isLoading={isLoading} />
