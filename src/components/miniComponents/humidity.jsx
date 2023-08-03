@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import React from "react";
-import FlexColCenter from "./FlexColCenter";
-import CustomTypography from "./customTypography";
+import FlexColCenter from "../customComponents/FlexColCenter";
+import CustomTypography from "../customComponents/customTypography";
 
 function Humidity({ humidity, color }) {
   return (

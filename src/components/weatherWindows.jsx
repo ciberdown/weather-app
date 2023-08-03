@@ -1,16 +1,19 @@
 import React from "react";
-import CityName from "./city";
-import Temperature from "./temp";
-import Weather from "./weather";
-import FeelsLike from "./feelsLike";
-import Humidity from "./humidity";
-import Winds from "./winds";
-import FlexCenter from "./FlexCenter";
+import CityName from "./miniComponents/city";
+import Temperature from "./miniComponents/temp";
+import Weather from "./miniComponents/weather";
+import FeelsLike from "./miniComponents/feelsLike";
+import Humidity from "./miniComponents/humidity";
+import Winds from "./miniComponents/winds";
+import FlexCenter from "./customComponents/FlexCenter";
+import Pressure from "./miniComponents/pressure";
+import Sunrise from "./miniComponents/sunrise";
+import { convertDateToNormalType } from "./calculates/convertDateToNormal";
+import Sunset from "./miniComponents/sunset";
 
 function WeatherWindows({ data }) {
   console.log(data);
   const textColor = "white";
-
   return (
     <div
       style={{
@@ -27,11 +30,23 @@ function WeatherWindows({ data }) {
     >
       <CityName color={textColor} city={data.name} />
       <Temperature color={textColor} temp={data.main.temp} />
-      <Weather color={textColor} input={data.weather[0].main} />
+      <Weather color={textColor} input={data.weather[0].description} />
       <FlexCenter>
         <FeelsLike color={textColor} feellike={data.main.feels_like} />
         <Humidity color={textColor} humidity={data.main.humidity} />
         <Winds color={textColor} winds={data.wind.speed} />
+        <Pressure color={textColor} pressure={data.main.pressure} />
+      </FlexCenter>
+
+      <FlexCenter>
+        <Sunrise
+          color={textColor}
+          sunrise={convertDateToNormalType(data.sys.sunrise)}
+        />
+        <Sunset
+          color={textColor}
+          sunset={convertDateToNormalType(data.sys.sunset)}
+        />
       </FlexCenter>
     </div>
   );

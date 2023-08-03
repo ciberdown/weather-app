@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import React from "react";
-import FlexColCenter from "./FlexColCenter";
+import FlexColCenter from "../customComponents/FlexColCenter";
 
 function FeelsLike({ feellike, color }) {
   const tempNum = feellike - 273.15;

@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import CustomTypography from "./customTypography";
+import CustomTypography from "../customComponents/customTypography";
 
 function CityName({ city, color = undefined, backgroundColor = undefined }) {
   return (

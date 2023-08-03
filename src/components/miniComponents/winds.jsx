@@ -1,7 +1,7 @@
 import React from "react";
-import FlexColCenter from "./FlexColCenter";
+import FlexColCenter from "../customComponents/FlexColCenter";
 import { Typography } from "@mui/material";
-import CustomTypography from "./customTypography";
+import CustomTypography from "../customComponents/customTypography";
 
 function Winds({ color, winds }) {
   return (

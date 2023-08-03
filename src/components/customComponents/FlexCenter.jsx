@@ -1,4 +1,4 @@
-function FlexCenter({ children }) {
+function FlexCenter({ children, sx = undefined }) {
   return (
     <div
       style={{
@@ -6,6 +6,7 @@ function FlexCenter({ children }) {
         alignItems: "center",
         justifyContent: "center",
         gap: "2rem",
+        ...sx,
       }}
     >
       {children}

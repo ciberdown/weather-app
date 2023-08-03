@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import React from "react";
-import CustomTypography from "./customTypography";
+import CustomTypography from "../customComponents/customTypography";
 
 function Temperature({ temp, color = undefined, backgroundColor = undefined }) {
   const tempNum = temp - 273.15;

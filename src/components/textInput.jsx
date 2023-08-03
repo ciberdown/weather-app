@@ -1,17 +1,18 @@
 import { CircularProgress, TextField, colors } from "@mui/material";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
-import getLocationInfo from "./fetch/getLocationInfo";
+import getLocationInfo from "./calculates/getLocationInfo";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWeather } from "./fetch/fetchWeatherAPIs";
 import { getWeatherUrlByLocation } from "./fetch/getWeatherUrl";
 import { useQuery } from "react-query";
-import CityName from "./city";
+import CityName from "./miniComponents/city";
+import { setLoadingTrue } from "../redux/reducers/weatherInfoReducer";
 
-export default function TextInput({ setCity, isLoading }) {
+export default function TextInput({ city, setCity, isLoading }) {
   const dispatch = useDispatch();
   const location = useSelector((state) => state.location);
   useQuery(
-    "location"+Math.random,
+    city + location.longitude,
     () =>
       fetchWeather(
         getWeatherUrlByLocation(location.longitude, location.latitude),
@@ -19,17 +20,25 @@ export default function TextInput({ setCity, isLoading }) {
       ),
     {
       enabled: location.longitude !== null,
+      onUnmount: (data) => {
+        // Cancel the ongoing query if it's still active
+        if (data.cancel) {
+          data.cancel();
+        }
+      },
     }
   );
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
+      dispatch(setLoadingTrue());
       setCity(event.target.value);
     }
   };
 
   const clickLocationHandle = () => {
+    dispatch(setLoadingTrue());
     getLocationInfo(dispatch);
-    setCity('')
+    setCity("");
   };
 
   return (

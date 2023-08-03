@@ -23,6 +23,12 @@ function Main() {
 
   useQuery(city, () => fetchWeather(getWeatherUrlByCity(city), dispatch), {
     enabled: city !== "",
+    onUnmount: (data) => {
+      // Cancel the ongoing query if it's still active
+      if (data.cancel) {
+        data.cancel();
+      }
+    },
   });
 
   if (isError) {
@@ -40,7 +46,7 @@ function Main() {
         height: "100vh",
       }}
     >
-      <TextInput setCity={setCity} isLoading={isLoading} />
+      <TextInput city={city} setCity={setCity} isLoading={isLoading} />
       {data && <WeatherWindows data={data} />}
     </Box>
   );
