@@ -4,10 +4,14 @@ import { Box } from "@mui/material";
 import cloudyBackground from "../assets/cloudy_background.jpg";
 import TextInput from "./textInput";
 import { useQuery } from "react-query";
-import { getWeatherUrlByCity } from "./fetch/getWeatherUrl";
+import {
+  getWeatherUrlByCity,
+  getWeatherUrlByLocation,
+} from "./fetch/getWeatherUrl";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchWeather } from "./fetch/fetchWeatherAPIs";
+import Errors from "./errors";
 
 function Main() {
   const [city, setCity] = useState("");
@@ -16,10 +20,14 @@ function Main() {
   );
 
   const dispatch = useDispatch();
+
   useQuery(city, () => fetchWeather(getWeatherUrlByCity(city), dispatch), {
     enabled: city !== "",
   });
 
+  if (isError) {
+    return <Errors error={error} />;
+  }
   return (
     <Box
       sx={{
@@ -33,7 +41,7 @@ function Main() {
       }}
     >
       <TextInput setCity={setCity} isLoading={isLoading} />
-      {isError ? <h1>error:{error.message}</h1> : <WeatherWindows />}
+      {data && <WeatherWindows data={data} />}
     </Box>
   );
 }

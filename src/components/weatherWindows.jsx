@@ -1,10 +1,15 @@
-import { Typography } from "@mui/material";
-import { createSelector } from "reselect";
 import React from "react";
-import { useSelector } from "react-redux";
+import CityName from "./city";
+import Temperature from "./temp";
+import Weather from "./weather";
+import FeelsLike from "./feelsLike";
+import Humidity from "./humidity";
+import Winds from "./winds";
+import FlexCenter from "./FlexCenter";
 
-function WeatherWindows() {
-  // Usage in a component
+function WeatherWindows({ data }) {
+  console.log(data);
+  const textColor = "white";
 
   return (
     <div
@@ -20,7 +25,14 @@ function WeatherWindows() {
         margin: "5px",
       }}
     >
-      {<Typography>{}</Typography>}
+      <CityName color={textColor} city={data.name} />
+      <Temperature color={textColor} temp={data.main.temp} />
+      <Weather color={textColor} input={data.weather[0].main} />
+      <FlexCenter>
+        <FeelsLike color={textColor} feellike={data.main.feels_like} />
+        <Humidity color={textColor} humidity={data.main.humidity} />
+        <Winds color={textColor} winds={data.wind.speed} />
+      </FlexCenter>
     </div>
   );
 }

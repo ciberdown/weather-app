@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import weatherInfoReducer from './reducers/weatherInfoReducer'
+import weatherInfoReducer from "./reducers/weatherInfoReducer";
+import locationReducer from "./reducers/locationReducers";
 
 const reducer = {
- weatherInfo: weatherInfoReducer 
+  weatherInfo: weatherInfoReducer,
+  location: locationReducer,
 };
 
 const store = configureStore({
