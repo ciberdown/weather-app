@@ -1,24 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import WeatherWindows from "./weatherWindows";
 import { Box } from "@mui/material";
-import cloudyBackground from "../assets/cloudy_background.jpg";
 import TextInput from "./textInput";
 import { useQuery } from "react-query";
-import {
-  getWeatherUrlByCity,
-  getWeatherUrlByLocation,
-} from "./fetch/getWeatherUrl";
+import { getWeatherUrlByCity } from "./fetch/getWeatherUrl";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchWeather } from "./fetch/fetchWeatherAPIs";
 import Errors from "./errors";
+import getWeatherBackground from "./utilities/getWeatherBackground";
 
 function Main() {
   const [city, setCity] = useState("");
   const { isError, error, isLoading, data } = useSelector(
     (state) => state.weatherInfo
   );
-
   const dispatch = useDispatch();
 
   useQuery(city, () => fetchWeather(getWeatherUrlByCity(city), dispatch), {
@@ -40,7 +36,9 @@ function Main() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        background: `url(${cloudyBackground})`,
+        backgroundImage: `url(./assets/${getWeatherBackground(
+          data?.weather[0].main
+        )})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         height: "100vh",

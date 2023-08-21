@@ -1,16 +1,19 @@
-import { CircularProgress, TextField, colors } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
-import getLocationInfo from "./calculates/getLocationInfo";
+import getLocationInfo from "./utilities/getLocationInfo";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWeather } from "./fetch/fetchWeatherAPIs";
 import { getWeatherUrlByLocation } from "./fetch/getWeatherUrl";
 import { useQuery } from "react-query";
-import CityName from "./miniComponents/city";
 import { setLoadingTrue } from "../redux/reducers/weatherInfoReducer";
+import { useEffect } from "react";
 
 export default function TextInput({ city, setCity, isLoading }) {
+  useEffect(() => {
+    weatherInfo && clickLocationHandle();
+  }, []);
   const dispatch = useDispatch();
-  const location = useSelector((state) => state.location);
+  const { location, weatherInfo } = useSelector((state) => state);
   useQuery(
     city + location.longitude,
     () =>
@@ -32,6 +35,7 @@ export default function TextInput({ city, setCity, isLoading }) {
     if (event.key === "Enter") {
       dispatch(setLoadingTrue());
       setCity(event.target.value);
+      event.target.value = ''
     }
   };
 
