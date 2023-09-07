@@ -1,19 +1,16 @@
 import { Typography } from "@mui/material";
-import CustomTypography from "../customComponents/customTypography";
 
 function CityName({ city, color = undefined, backgroundColor = undefined }) {
   return (
-    <CustomTypography
+    <Typography
       sx={{
         color,
         backgroundColor,
-        marginTop: "10rem",
-        marginLeft: "1rem",
-        fontSize: "2rem",
+        fontSize: "2.5rem",
       }}
     >
       {city}
-    </CustomTypography>
+    </Typography>
   );
 }
 

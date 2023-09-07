@@ -6,12 +6,11 @@ function Weather({ input, color, icon }) {
     <Typography
       sx={{
         color,
-        position: "absolute",
-        right: 0,
+        margin: 0,
+        padding: 0,
         rotate: "-90deg",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
       }}
     >
       <img src={getWeatherIconURL(icon)} alt="weather explain icon" />

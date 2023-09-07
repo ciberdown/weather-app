@@ -1,10 +1,11 @@
-function FlexCenter({ children, sx = undefined }) {
+function FlexCenter({ children, sx = undefined, justifyContent = undefined }) {
   return (
     <div
       style={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent:
+          justifyContent === undefined ? "center" : justifyContent,
         gap: "2rem",
         ...sx,
       }}

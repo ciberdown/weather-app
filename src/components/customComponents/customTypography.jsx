@@ -1,17 +1,40 @@
-import { Typography } from "@mui/material";
 import React from "react";
+import {
+  numColor,
+  numsFontSize,
+  textColor,
+  textFontSize,
+} from "../../styles/constants";
+import { Typography } from "@mui/material";
+import FlexColCenter from "./FlexColCenter";
 
 function CustomTypography({
-  color = undefined,
-  fontSize = undefined,
-  children = undefined,
-  sx = undefined,
+  text,
+  number,
   backgroundColor = undefined,
+  sx = undefined,
+  className = undefined,
 }) {
   return (
-    <Typography sx={{ color, fontSize, backgroundColor, ...sx }}>
-      {children}
-    </Typography>
+    <FlexColCenter>
+      <Typography
+        className={className}
+        sx={{ color: numColor, fontSize: numsFontSize, backgroundColor, ...sx }}
+      >
+        {number}
+      </Typography>
+      <Typography
+        className={className}
+        sx={{
+          color: textColor,
+          fontSize: textFontSize,
+          backgroundColor,
+          ...sx,
+        }}
+      >
+        {text}
+      </Typography>
+    </FlexColCenter>
   );
 }
 
