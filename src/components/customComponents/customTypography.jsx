@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  defaultFont,
   numColor,
   numsFontSize,
   textColor,
@@ -21,7 +22,13 @@ function CustomTypography({
     <FlexColCenter>
       <Typography
         className={className}
-        sx={{ color: numColor, fontSize: numsFontSize, backgroundColor, ...sx }}
+        sx={{
+          color: numColor,
+          fontSize: numsFontSize,
+          backgroundColor,
+          fontFamily: "serif",
+          ...sx,
+        }}
       >
         {number}
       </Typography>
@@ -32,6 +39,7 @@ function CustomTypography({
             color: textColor,
             fontSize: textFontSize,
             backgroundColor,
+            fontFamily: defaultFont,
             ...sx,
           }}
         >

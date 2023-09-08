@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CityName from "./miniComponents/city";
 import Temperature from "./miniComponents/temp/temp";
 import Weather from "./miniComponents/weatherExplain";
@@ -11,10 +11,14 @@ import convertKelvinToCelcius from "./utilities/convertKelvinToCelcius";
 import getSunTimes from "./utilities/getSunTimes";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import { arrowIconColor } from "../styles/constants";
-import UpgradeIcon from "@mui/icons-material/Upgrade";
+import Clock from "./clock";
+import { convertDateToNormalType } from "./utilities/convertDateToNormal";
 
 function WeatherWindows({ data }) {
-  console.log(data);
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <div
       className="weather-container"
@@ -31,6 +35,7 @@ function WeatherWindows({ data }) {
         backdropFilter: "blur(20px)",
         minWidth: "400px",
         margin: "5px",
+        overflow: "hidden",
       }}
     >
       <FlexCenter
@@ -77,13 +82,23 @@ function WeatherWindows({ data }) {
         <CustomTypography text="Pressure" number={data.main.pressure + "Pa"} />
       </FlexCenter>
       <FlexCenter>
-        <CustomTypography
-          text="Sunrise"
-          number={getSunTimes(data.sys.sunrise)}
-        />
-        <CustomTypography text="Sunset" number={getSunTimes(data.sys.sunset)} />
+        <CustomTypography text="Sunrise" number={getSunTimes(data.sys.sunrise)}>
+          <Clock right="63%" time={convertDateToNormalType(data.sys.sunrise)} />
+        </CustomTypography>
+        <CustomTypography text="Sunset" number={getSunTimes(data.sys.sunset)}>
+          <Clock right="23%" time={convertDateToNormalType(data.sys.sunset)} />
+        </CustomTypography>
       </FlexCenter>
-      <Box sx={{ display: "flex", gap: "5px", overflow: "hidden" }}>
+      <Box
+        className="bottom-animate"
+        sx={{
+          display: "flex",
+          gap: "5px",
+          marginBottom: "40px",
+          whiteSpace: "nowrap",
+          alignItems: "center",
+        }}
+      >
         <CustomMiniFlexBox text="Visibility" number={data.visibility + "m"} />
         <CustomMiniFlexBox text="Base" number={data.base} />
         <CustomMiniFlexBox

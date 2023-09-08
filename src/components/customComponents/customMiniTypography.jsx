@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import { numColor, textColor } from "../../styles/constants";
+import { defaultFont, numColor, textColor } from "../../styles/constants";
 
 function CustomMiniTypography({
   text,
@@ -9,11 +9,25 @@ function CustomMiniTypography({
   disableComma = false,
 }) {
   return (
-    <Box sx={{ display: "flex", ...sx }}>
-      <Typography sx={{ color: textColor, whiteSpace: "nowrap" }}>
+    <Box sx={{ display: "flex", alignItems: "center", ...sx }}>
+      <Typography
+        sx={{
+          color: textColor,
+          whiteSpace: "nowrap",
+          fontFamily: defaultFont,
+        }}
+      >
         {text}:&nbsp;
       </Typography>
-      <Typography sx={{ color: numColor, whiteSpace: "nowrap" }}>
+      <Typography
+        sx={{
+          color: numColor,
+          whiteSpace: "nowrap",
+          fontFamily: defaultFont,
+          fontWeight: "bold",
+          fontSize: "20px",
+        }}
+      >
         {number}
         {!disableComma && ","}&nbsp;
       </Typography>

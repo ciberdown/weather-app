@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchWeather } from "./fetch/fetchWeatherAPIs";
 import Errors from "./errors";
 import getWeatherBackground from "./utilities/getWeatherBackground";
+import { MagicSpinner } from "react-spinners-kit";
 
 function Main() {
   const [city, setCity] = useState("");
@@ -45,7 +46,13 @@ function Main() {
       }}
     >
       <TextInput city={city} setCity={setCity} isLoading={isLoading} />
-      {data && <WeatherWindows data={data} />}
+      {isLoading ? (
+        <div style={{ marginTop: "300px" }}>
+          <MagicSpinner size={200} color="red" />
+        </div>
+      ) : (
+        data && <WeatherWindows data={data} />
+      )}
     </Box>
   );
 }

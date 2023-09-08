@@ -1,5 +1,4 @@
 .main {
-  font-family: "Raleway";
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,8 +8,16 @@
 #textInput::placeholder {
   color: white;
   border: 0;
-  font-family: "Raleway";
 }
-.typography{
-  font-size: .9rem;
+
+.bottom-animate {
+  transform: translateX(750px);
+  animation: go-forward 14s linear infinite forwards;
+}
+@keyframes go-forward {
+  0% {
+  }
+  100% {
+    transform: translateX(-750px);
+  }
 }
