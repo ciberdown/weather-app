@@ -5,12 +5,14 @@ import {
   textColor,
   textFontSize,
 } from "../../styles/constants";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import FlexColCenter from "./FlexColCenter";
+import FlexCenter from "./FlexCenter";
 
 function CustomTypography({
   text,
   number,
+  children = undefined,
   backgroundColor = undefined,
   sx = undefined,
   className = undefined,
@@ -23,17 +25,20 @@ function CustomTypography({
       >
         {number}
       </Typography>
-      <Typography
-        className={className}
-        sx={{
-          color: textColor,
-          fontSize: textFontSize,
-          backgroundColor,
-          ...sx,
-        }}
-      >
-        {text}
-      </Typography>
+      <Box sx={{ display: "flex", gap: "4px", alignItems: "center" }}>
+        <Typography
+          className={className}
+          sx={{
+            color: textColor,
+            fontSize: textFontSize,
+            backgroundColor,
+            ...sx,
+          }}
+        >
+          {text}
+        </Typography>
+        {children}
+      </Box>
     </FlexColCenter>
   );
 }

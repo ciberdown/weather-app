@@ -3,3 +3,4 @@ export const numsFontSize = "25px";
 
 export const textColor = "white";
 export const numColor = "black";
+export const arrowIconColor = "red";

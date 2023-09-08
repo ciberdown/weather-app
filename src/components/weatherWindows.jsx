@@ -5,10 +5,13 @@ import Weather from "./miniComponents/weatherExplain";
 import FlexCenter from "./customComponents/FlexCenter";
 import FlexColCenter from "./customComponents/FlexColCenter";
 import CustomMiniFlexBox from "./customComponents/customMiniTypography";
-import { Box } from "@mui/material";
+import { Box, Tooltip } from "@mui/material";
 import CustomTypography from "./customComponents/customTypography";
 import convertKelvinToCelcius from "./utilities/convertKelvinToCelcius";
 import getSunTimes from "./utilities/getSunTimes";
+import NavigationIcon from "@mui/icons-material/Navigation";
+import { arrowIconColor } from "../styles/constants";
+import UpgradeIcon from "@mui/icons-material/Upgrade";
 
 function WeatherWindows({ data }) {
   console.log(data);
@@ -63,7 +66,14 @@ function WeatherWindows({ data }) {
       </FlexColCenter>
       <FlexCenter>
         <CustomTypography text="Humidity" number={data.main.humidity + "%"} />
-        <CustomTypography text="Winds" number={data.wind.speed + "MPH"} />
+        <CustomTypography text="Winds" number={data.wind.speed + "MPH"}>
+          <Tooltip title={data.wind.deg + "deg"}>
+            <NavigationIcon
+              fontSize="small"
+              sx={{ rotate: data.wind.deg + "deg", color: arrowIconColor }}
+            />
+          </Tooltip>
+        </CustomTypography>
         <CustomTypography text="Pressure" number={data.main.pressure + "Pa"} />
       </FlexCenter>
       <FlexCenter>
@@ -73,18 +83,25 @@ function WeatherWindows({ data }) {
         />
         <CustomTypography text="Sunset" number={getSunTimes(data.sys.sunset)} />
       </FlexCenter>
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", gap: "5px", overflow: "hidden" }}>
         <CustomMiniFlexBox text="Visibility" number={data.visibility + "m"} />
-        <CustomMiniFlexBox text="base" number={data.base} />
+        <CustomMiniFlexBox text="Base" number={data.base} />
         <CustomMiniFlexBox
-          text="coordination"
+          text="Coordination"
           number={"[" + data.coord.lon + ", " + data.coord.lat + "]"}
         />
-        <CustomMiniFlexBox
-          text="Sea level"
-          number={data.main.sea_level + "m"}
-        />
+        {data.main.sea_level && (
+          <CustomMiniFlexBox
+            text="Sea level"
+            number={data.main.sea_level + "m"}
+          />
+        )}
         <CustomMiniFlexBox text="Country" number={data.sys.country} />
+        <CustomMiniFlexBox
+          text="Clouds"
+          number={data.clouds.all}
+          disableComma
+        />
       </Box>
     </div>
   );
