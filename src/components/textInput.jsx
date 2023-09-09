@@ -46,7 +46,7 @@ export default function TextInput({ city, setCity, isLoading }) {
   };
 
   return (
-    <div style={{ position: "relative", width: "50%", maxWidth: "600px" }}>
+    <div className="header-container" >
       <input
         id="textInput"
         onKeyDown={handleKeyDown}

@@ -38,7 +38,8 @@ function Main() {
         flexDirection: "column",
         alignItems: "center",
         backgroundImage: `url(./assets/${getWeatherBackground(
-          data?.weather[0].main
+          data?.weather[0].main,
+          data?.main.feels_like
         )})`,
         backgroundSize: "cover",
         backgroundPosition: "center",

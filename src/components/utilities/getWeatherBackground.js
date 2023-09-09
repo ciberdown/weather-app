@@ -1,4 +1,10 @@
-function getWeatherBackground(weather) {
+import convertKelvinToCelcius from "./convertKelvinToCelcius";
+
+function getWeatherBackground(weather, temp) {
+  temp = convertKelvinToCelcius(temp);
+  if (temp > 35) {
+    return "desert.jpg";
+  }
   switch (weather?.toLowerCase()) {
     case "clouds":
       const rnd = Math.random();

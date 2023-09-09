@@ -5,14 +5,12 @@ import Weather from "./miniComponents/weatherExplain";
 import FlexCenter from "./customComponents/FlexCenter";
 import FlexColCenter from "./customComponents/FlexColCenter";
 import CustomMiniFlexBox from "./customComponents/customMiniTypography";
-import { Box, Tooltip } from "@mui/material";
+import { Box } from "@mui/material";
 import CustomTypography from "./customComponents/customTypography";
 import convertKelvinToCelcius from "./utilities/convertKelvinToCelcius";
-import getSunTimes from "./utilities/getSunTimes";
-import NavigationIcon from "@mui/icons-material/Navigation";
-import { arrowIconColor } from "../styles/constants";
-import Clock from "./clock";
-import { convertDateToNormalType } from "./utilities/convertDateToNormal";
+import Sunrise from "./miniComponents/sunrise";
+import Sunset from "./miniComponents/sunset";
+import Winds from "./miniComponents/winds";
 
 function WeatherWindows({ data }) {
   useEffect(() => {
@@ -20,24 +18,7 @@ function WeatherWindows({ data }) {
   }, [data]);
 
   return (
-    <div
-      className="weather-container"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        backgroundColor: "black",
-        maxWidth: "700px",
-        height: "100vh",
-        width: "60%",
-        borderRadius: "20px",
-        backgroundColor: "rgba(255, 255, 255, 0.2)",
-        backdropFilter: "blur(20px)",
-        minWidth: "400px",
-        margin: "5px",
-        overflow: "hidden",
-      }}
-    >
+    <div className="weather-container weather-mobile">
       <FlexCenter
         sx={{
           marginTop: "50px",
@@ -71,33 +52,15 @@ function WeatherWindows({ data }) {
       </FlexColCenter>
       <FlexCenter>
         <CustomTypography text="Humidity" number={data.main.humidity + "%"} />
-        <CustomTypography text="Winds" number={data.wind.speed + "MPH"}>
-          <Tooltip title={data.wind.deg + "deg"}>
-            <NavigationIcon
-              fontSize="small"
-              sx={{ rotate: data.wind.deg + "deg", color: arrowIconColor }}
-            />
-          </Tooltip>
-        </CustomTypography>
+        <Winds wind={data.wind} />
         <CustomTypography text="Pressure" number={data.main.pressure + "Pa"} />
       </FlexCenter>
       <FlexCenter>
-        <CustomTypography text="Sunrise" number={getSunTimes(data.sys.sunrise)}>
-          <Clock right="63%" time={convertDateToNormalType(data.sys.sunrise)} />
-        </CustomTypography>
-        <CustomTypography text="Sunset" number={getSunTimes(data.sys.sunset)}>
-          <Clock right="23%" time={convertDateToNormalType(data.sys.sunset)} />
-        </CustomTypography>
+        <Sunrise sunrise={data.sys.sunrise} />
+        <Sunset sunset={data.sys.sunset} />
       </FlexCenter>
       <Box
-        className="bottom-animate"
-        sx={{
-          display: "flex",
-          gap: "5px",
-          marginBottom: "40px",
-          whiteSpace: "nowrap",
-          alignItems: "center",
-        }}
+        className="bottom-animate subtitle"
       >
         <CustomMiniFlexBox text="Visibility" number={data.visibility + "m"} />
         <CustomMiniFlexBox text="Base" number={data.base} />

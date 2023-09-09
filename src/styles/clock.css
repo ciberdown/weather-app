@@ -14,7 +14,12 @@
   color: #444;
   text-align: center;
 }
-
+.right-clock {
+  right: 23%;
+}
+.left-clock {
+  right: 63%;
+}
 .clock::after {
   background: #aaa;
   content: "";
@@ -61,68 +66,21 @@
   transform-origin: bottom;
 }
 
-.clock span {
-  position: absolute;
-  font-family: "Source Sans Pro", sans-serif;
-  font-weight: 700;
-}
-
-.twelve {
-  top: 10px;
-  left: 46%;
-}
-
-.one {
-  top: 10%;
-  right: 26%;
-}
-
-.eleven {
-  top: 10%;
-  left: 26%;
-}
-
-.two {
-  top: 25%;
-  right: 10%;
-}
-
-.three {
-  right: 10px;
-  top: 46%;
-}
-
-.four {
-  right: 30px;
-  top: 67%;
-}
-
-.five {
-  right: 78px;
-  top: 80%;
-}
-
-.six {
-  bottom: 10px;
-  left: 50%;
-}
-
-.seven {
-  left: 80px;
-  top: 82%;
-}
-
-.eight {
-  left: 30px;
-  top: 67%;
-}
-
-.nine {
-  left: 10px;
-  top: 46%;
-}
-
-.ten {
-  top: 25%;
-  left: 10%;
+@media only screen and (max-width: 768px) {
+  .clock-mobile {
+    bottom: 10%;
+    background-color: black;
+  }
+  .hour_hand {
+    background-color: rgb(178, 175, 175);
+  }
+  .min_hand {
+    background-color: white;
+  }
+  .right-clock {
+    right: 30%;
+  }
+  .left-clock {
+    left: 38%;
+  }
 }
