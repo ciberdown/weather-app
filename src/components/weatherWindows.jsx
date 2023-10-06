@@ -13,10 +13,6 @@ import Sunset from "./miniComponents/sunset";
 import Winds from "./miniComponents/winds";
 
 function WeatherWindows({ data }) {
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return (
     <div className="weather-container weather-mobile">
       <FlexCenter
@@ -59,9 +55,7 @@ function WeatherWindows({ data }) {
         <Sunrise sunrise={data.sys.sunrise} />
         <Sunset sunset={data.sys.sunset} />
       </FlexCenter>
-      <Box
-        className="bottom-animate subtitle"
-      >
+      <Box className="bottom-animate subtitle">
         <CustomMiniFlexBox text="Visibility" number={data.visibility + "m"} />
         <CustomMiniFlexBox text="Base" number={data.base} />
         <CustomMiniFlexBox

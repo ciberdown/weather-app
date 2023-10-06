@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import WeatherWindows from "./weatherWindows";
 import { Box } from "@mui/material";
 import TextInput from "./textInput";
@@ -10,9 +10,11 @@ import { fetchWeather } from "./fetch/fetchWeatherAPIs";
 import Errors from "./errors";
 import getWeatherBackground from "./utilities/getWeatherBackground";
 import { MagicSpinner } from "react-spinners-kit";
+import { getLocalLocation } from "./utilities/handleLocalstorage.";
+import Loading from "./loading";
 
 function Main() {
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState(getLocalLocation());
   const { isError, error, isLoading, data } = useSelector(
     (state) => state.weatherInfo
   );
@@ -28,9 +30,6 @@ function Main() {
     },
   });
 
-  if (isError) {
-    return <Errors error={error} />;
-  }
   return (
     <Box
       sx={{
@@ -44,13 +43,13 @@ function Main() {
         backgroundSize: "cover",
         backgroundPosition: "center",
         height: "100vh",
+        overflowY:'scroll'
       }}
     >
       <TextInput city={city} setCity={setCity} isLoading={isLoading} />
+      {isError && <Errors error={error} />}
       {isLoading ? (
-        <div style={{ marginTop: "300px" }}>
-          <MagicSpinner size={200} color="red" />
-        </div>
+        <Loading size={200} />
       ) : (
         data && <WeatherWindows data={data} />
       )}

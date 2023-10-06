@@ -7,6 +7,7 @@ import { getWeatherUrlByLocation } from "./fetch/getWeatherUrl";
 import { useQuery } from "react-query";
 import { setLoadingTrue } from "../redux/reducers/weatherInfoReducer";
 import { useEffect } from "react";
+import { setLocalLocation } from "./utilities/handleLocalstorage.";
 
 export default function TextInput({ city, setCity, isLoading }) {
   useEffect(() => {
@@ -35,7 +36,8 @@ export default function TextInput({ city, setCity, isLoading }) {
     if (event.key === "Enter") {
       dispatch(setLoadingTrue());
       setCity(event.target.value);
-      event.target.value = ''
+      setLocalLocation(event.target.value);
+      event.target.value = "";
     }
   };
 
@@ -46,7 +48,7 @@ export default function TextInput({ city, setCity, isLoading }) {
   };
 
   return (
-    <div className="header-container" >
+    <div className="header-container">
       <input
         id="textInput"
         onKeyDown={handleKeyDown}

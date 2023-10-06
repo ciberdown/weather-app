@@ -8,6 +8,7 @@ function getLocationInfo(dispatch) {
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
+        console.log(position)
         dispatch(setLatitude(position.coords.latitude));
         dispatch(setLongitude(position.coords.longitude));
       },
