@@ -1,0 +1,11 @@
+.thermometer {
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+@media screen and (max-width:450px) {
+  .thermometer{
+    align-self: start;
+    margin-left: 50px;
+    margin-top: -20px;
+  }
+}

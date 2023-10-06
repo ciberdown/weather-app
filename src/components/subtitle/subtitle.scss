@@ -1,0 +1,19 @@
+.bottom-animate {
+  transform: translateX(750px);
+  animation: go-forward 14s linear infinite forwards;
+}
+@keyframes go-forward {
+  0% {
+  }
+  100% {
+    transform: translateX(-750px);
+  }
+}
+
+.subtitle {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 20px;
+  white-space: nowrap;
+  align-items: center;
+}

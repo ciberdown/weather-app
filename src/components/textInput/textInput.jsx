@@ -1,13 +1,14 @@
 import { CircularProgress } from "@mui/material";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
-import getLocationInfo from "./utilities/getLocationInfo";
+import getLocationInfo from "../../utilities/uses/getLocationInfo";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchWeather } from "./fetch/fetchWeatherAPIs";
-import { getWeatherUrlByLocation } from "./fetch/getWeatherUrl";
+import { fetchWeather } from "../../utilities/fetch/fetchWeatherAPIs";
+import { getWeatherUrlByLocation } from "../../utilities/fetch/getWeatherUrl";
 import { useQuery } from "react-query";
-import { setLoadingTrue } from "../redux/reducers/weatherInfoReducer";
+import { setLoadingTrue } from "../../redux/reducers/weatherInfoReducer";
 import { useEffect } from "react";
-import { setLocalLocation } from "./utilities/handleLocalstorage.";
+import { setLocalLocation } from "../../utilities/uses/handleLocalstorage.";
+import "./textInput.scss";
 
 export default function TextInput({ city, setCity, isLoading }) {
   useEffect(() => {

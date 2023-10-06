@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
-import WeatherWindows from "./weatherWindows";
+import React, { useState } from "react";
+import WeatherWindows from "../weatherWindow/weatherWindows";
 import { Box } from "@mui/material";
-import TextInput from "./textInput";
+import TextInput from "../textInput/textInput";
 import { useQuery } from "react-query";
-import { getWeatherUrlByCity } from "./fetch/getWeatherUrl";
+import { getWeatherUrlByCity } from "../../utilities/fetch/getWeatherUrl";
 import { useDispatch, useSelector } from "react-redux";
-
-import { fetchWeather } from "./fetch/fetchWeatherAPIs";
-import Errors from "./errors";
-import getWeatherBackground from "./utilities/getWeatherBackground";
-import { MagicSpinner } from "react-spinners-kit";
-import { getLocalLocation } from "./utilities/handleLocalstorage.";
-import Loading from "./loading";
+import "./main.scss";
+import { fetchWeather } from "../../utilities/fetch/fetchWeatherAPIs";
+import Errors from "../errors";
+import getWeatherBackground from "../../utilities/uses/getWeatherBackground";
+import { getLocalLocation } from "../../utilities/uses/handleLocalstorage.";
+import Loading from "../loading";
 
 function Main() {
   const [city, setCity] = useState(getLocalLocation());
@@ -43,7 +42,7 @@ function Main() {
         backgroundSize: "cover",
         backgroundPosition: "center",
         height: "100vh",
-        overflowY:'scroll'
+        overflowY: "scroll",
       }}
     >
       <TextInput city={city} setCity={setCity} isLoading={isLoading} />

@@ -1,0 +1,13 @@
+.weather-explain-container {
+  margin: 0;
+  padding: 0;
+  rotate: -90deg;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 450px) {
+  .weather-explain-container {
+    margin-top: 90px;
+  }
+}
