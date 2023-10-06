@@ -11,6 +11,8 @@ import convertKelvinToCelcius from "./utilities/convertKelvinToCelcius";
 import Sunrise from "./miniComponents/sunrise";
 import Sunset from "./miniComponents/sunset";
 import Winds from "./miniComponents/winds";
+import Clock from "./miniComponents/clock";
+import { convertDateToNormalType } from "./utilities/convertDateToNormal";
 
 function WeatherWindows({ data }) {
   return (
@@ -52,8 +54,17 @@ function WeatherWindows({ data }) {
         <CustomTypography text="Pressure" number={data.main.pressure + "Pa"} />
       </FlexCenter>
       <FlexCenter>
+        <Clock
+          class="left-clock"
+          time={convertDateToNormalType(data.sys.sunrise)}
+        />
         <Sunrise sunrise={data.sys.sunrise} />
         <Sunset sunset={data.sys.sunset} />
+
+        <Clock
+          class="right-clock"
+          time={convertDateToNormalType(data.sys.sunset)}
+        />
       </FlexCenter>
       <Box className="bottom-animate subtitle">
         <CustomMiniFlexBox text="Visibility" number={data.visibility + "m"} />

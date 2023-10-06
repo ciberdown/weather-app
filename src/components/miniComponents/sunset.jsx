@@ -7,7 +7,6 @@ import { convertDateToNormalType } from "../utilities/convertDateToNormal";
 function Sunset({ sunset }) {
   return (
     <CustomTypography text="Sunset" number={getSunTimes(sunset)}>
-      <Clock class="right-clock" time={convertDateToNormalType(sunset)} />
     </CustomTypography>
   );
 }
